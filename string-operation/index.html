@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>String Functions Demo</title>
+  <style>
+    body {
+      background: #5a4e46;
+      font-family: Georgia, "Times New Roman", Times, serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .book-page {
+      background: #fdfaf3;
+      padding: 30px 40px;
+      border-radius: 4px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      border: 1px solid #d2c8b4;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    h3 {
+      color: #5a442a;
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 25px;
+      border-bottom: 2px solid #c8b89e;
+      padding-bottom: 10px;
+      font-weight: normal;
+    }
+
+    label {
+      color: #6a5a4a;
+      font-size: 14px;
+      display: block;
+      margin: 15px 0 5px;
+    }
+
+    input {
+      font-family: inherit;
+      font-size: 16px;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 8px;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid #a08c6d;
+      color: #5a442a;
+    }
+
+    input:focus {
+      outline: none;
+      border-bottom: 2px solid #5a442a;
+    }
+
+    button {
+      font-family: inherit;
+      font-size: 16px;
+      width: 100%;
+      box-sizing: border-box;
+      margin-top: 25px;
+      padding: 12px 15px;
+      background: #8a4b4b;
+      color: #fdfaf3;
+      border: 1px solid #7a3b3b;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    button:hover {
+      background: #7a3b3b;
+    }
+
+    #output {
+      margin-top: 25px;
+      padding-top: 20px;
+      border-top: 1px dotted #d2c8b4;
+      line-height: 1.8;
+      color: #5a442a;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="book-page">
+    <h3>User Info - String Handling</h3>
+
+    <form id="infoForm">
+      <label for="username">Your Name:</label>
+      <input type="text" id="username">
+
+      <label for="location">Your City:</label>
+      <input type="text" id="location">
+
+      <button type="button" onclick="processStrings()">Show Results</button>
+    </form>
+
+    <div id="output">
+    </div>
+  </div>
+
+  <script>
+    function processStrings() {
+      let user = document.getElementById("username").value;
+      let city = document.getElementById("location").value;
+
+      if (user.trim() === '' || city.trim() === '') {
+        document.getElementById("output").innerHTML = "Please fill out both fields.";
+        return;
+      }
+
+      let sentence = `${user} lives in ${city}`;
+      let upperCase = sentence.toUpperCase();
+      let lowerCase = sentence.toLowerCase();
+      let charCount = sentence.length;
+      let firstFour = sentence.substring(0, 4);
+      let swapped = sentence.replace(/i/g, "1");
+      let trimmed = sentence.trim();
+      let parts = sentence.split(" ");
+      let containsLives = sentence.includes("lives");
+      let startsWithUser = sentence.startsWith(user);
+
+      document.getElementById("output").innerHTML = `
+        <b>Sentence:</b> ${sentence}<br>
+        <b>Uppercase:</b> ${upperCase}<br>
+        <b>Lowercase:</b> ${lowerCase}<br>
+        <b>Character Count:</b> ${charCount}<br>
+        <b>First 4 chars:</b> ${firstFour}<br>
+        <b>Replace 'i' with '1':</b> ${swapped}<br>
+        <b>Trimmed:</b> ${trimmed}<br>
+        <b>Words Array:</b> [${parts.join(", ")}]<br>
+        <b>Contains 'lives'?</b> ${containsLives}<br>
+        <b>Starts with Name?</b> ${startsWithUser}
+      `;
+    }
+  </script>
+</body>
+</html>

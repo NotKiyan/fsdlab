@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Table Generator</title>
+  <style>
+    body {
+      background: #5a4e46;
+      font-family: Georgia, "Times New Roman", Times, serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+
+    .book-page {
+      background: #fdfaf3;
+      padding: 30px 40px;
+      border-radius: 4px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      border: 1px solid #d2c8b4;
+      width: 100%;
+      max-width: 320px;
+    }
+
+    h3 {
+      color: #5a442a; /* Dark sepia for text */
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 25px;
+      border-bottom: 2px solid #c8b89e;
+      padding-bottom: 10px;
+      font-weight: normal;
+    }
+
+    input, button {
+      font-family: inherit;
+      font-size: 16px;
+      border-radius: 4px;
+      padding: 10px;
+      margin-top: 10px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    input {
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid #a08c6d;
+      color: #5a442a;
+    }
+
+    input:focus {
+        outline: none;
+        border-bottom: 2px solid #5a442a;
+    }
+
+    button {
+      background-color: #6a5a4a;
+      color: #fdfaf3;
+      border: 1px solid #5a4a3a;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+      margin-top: 20px;
+    }
+
+    button:hover {
+      background-color: #5a4a3a;
+    }
+
+    ul {
+      margin-top: 25px;
+      padding-left: 0;
+      list-style: none;
+    }
+
+    li {
+
+      background: none;
+      border: none;
+      padding: 8px 5px;
+      color: #5a442a;
+      border-bottom: 1px dotted #d2c8b4;
+    }
+
+    li:last-child {
+        border-bottom: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="book-page">
+    <h3>Multiplication Table Maker</h3>
+
+    <input type="number" id="userInput" placeholder="Enter a number">
+
+    <button onclick="generateTable()">Generate</button>
+
+    <ul id="resultList">
+      </ul>
+  </div>
+
+  <script>
+    function generateTable() {
+      let value = document.getElementById("userInput").value;
+      let container = document.getElementById("resultList");
+
+      // Clear previous results
+      container.innerHTML = "";
+
+      // Validate input
+      if (value === "") {
+        return;
+      }
+
+      let num = parseInt(value);
+
+      // Generate table
+      for (let step = 1; step <= 10; step++) {
+        let item = document.createElement("li");
+        item.textContent = `${num} × ${step} = ${num * step}`;
+        container.appendChild(item);
+      }
+    }
+  </script>
+</body>
+</html>
