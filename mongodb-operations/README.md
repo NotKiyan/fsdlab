@@ -39,6 +39,7 @@ db.flavors.find().pretty()
 
 
 ## Aggregate Operations
+Calculate the average price of all ice cream flavors:
 ```js
 db.flavors.aggregate([
   { $group: { _id: null, averagePrice: { $avg: "$price" } } }
@@ -65,3 +66,39 @@ db.flavors.aggregate([
 
 <img width="710" height="159" alt="image" src="https://github.com/user-attachments/assets/060ed4ea-3c75-4d04-9a46-25532c92456f" />
 
+
+##Logical Operations
+
+Find flavors that are expensive (price > 170) AND have a low stock level (stock_level < 85):
+
+```js
+db.flavors.find({
+  $and: [
+    { price: { $gt: 170 } },
+    { stock_level: { $lt: 85 } }
+  ]
+})
+```
+
+<img width="564" height="547" alt="image" src="https://github.com/user-attachments/assets/3f8ad5fe-c647-43aa-840e-23927c649f73" />
+
+Find flavors available in either T. Nagar OR Besant Nagar:
+```js
+db.flavors.find({
+  $or: [
+    { shop_location: "T. Nagar" },
+    { shop_location: "Besant Nagar" }
+  ]
+})
+
+```
+<img width="501" height="686" alt="image" src="https://github.com/user-attachments/assets/20593e80-0b4e-44d7-8317-e15ab2110518" />
+
+Find all flavors that are Not Equal to being in the Adyar location:
+
+```js
+db.flavors.find({
+  shop_location: { $ne: "Adyar" }
+})
+```
+<img width="501" height="623" alt="image" src="https://github.com/user-attachments/assets/0b32333b-704e-4816-879a-ff88d2afc013" />
